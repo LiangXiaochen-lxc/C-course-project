@@ -1,12 +1,18 @@
 #include <string.h>
 #include <stdio.h>
+/*
+ÁºĞ¦³¾
+µÇÂ¼
 
+return ³É¹¦·µ»Ø1 Ê§°Ü·µ»Ø0 
+*/ 
 int login(){
-    char input[100];
-    char password[100] = "";
+    unsigned char input[100];
+    unsigned char password[100] = "pikachu";
     FILE* target = fopen("password", "r");
     if (target != NULL){
         fgets(password, 100, (FILE*) target);
+        decode(password); 
         printf("ÇëÊäÈëÃÜÂë\n");
     } else {
         printf("ÇëÊäÈë³õÊ¼ÃÜÂë\n");

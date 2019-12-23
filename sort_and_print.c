@@ -3,26 +3,34 @@
 #include <stdio.h>
 
 extern char currentArea[];
-extern Student nowStudent[];
+extern Student* nowStudent[];
 extern int nowStudentNum;
 
-void sortByName(Student students[], int mode, int num){
+/*
+马汶研
+根据姓名排序
+
+students 从这些学生中寻找
+mode 1正序排序 0倒序排序
+num students中的学生总数 
+*/ 
+void sortByName(Student* students[], int mode, int num){
 	int i, j;
-	Student t;
-	if (mode == 1) {
-		for (i = 0; i < num-1; i++) {
+	Student* t;
+	if (mode == 1) {//正序排序 
+		for (i = 0; i < num-1; i++) {//排序流程 
 			for(j = i+1; j < num; j++) {
-				if(strcmp(students[i].name, students[j].name) > 0) {
+				if(strcmp(students[i]->name, students[j]->name) > 0) {
 					t = students[i];
 					students[i] = students[j];
 					students[j] = t;
 				}
 			}
 		}
-	} else {
-		for (i = 0; i < num-1; i++){
+	} else {//倒序排序 
+		for (i = 0; i < num-1; i++){//排序流程 
 			for(j = i+1; j<num; j++){
-				if(strcmp(students[i].name, students[j].name) < 0){
+				if(strcmp(students[i]->name, students[j]->name) < 0){
 					t = students[i];
 					students[i] = students[j];
 					students[j] = t;
@@ -32,24 +40,32 @@ void sortByName(Student students[], int mode, int num){
 	}
 }
  
+/*
+马汶研
+根据姓名排序
 
-void sortByScore(int subject, Student students[], int mode, int num){
+subject 按第几门学科排序 第11门为平均值 
+students 从这些学生中寻找
+mode 1正序排序 0倒序排序
+num students中的学生总数 
+*/ 
+void sortByScore(int subject, Student* students[], int mode, int num){
 	int i, j;
-	Student t;
-	if (mode == 1) {
-		for (i = 0; i < num-1; i++){
+	Student* t;
+	if (mode == 1) {//正序排序 
+		for (i = 0; i < num-1; i++){//排序流程 
 			for(j = i+1; j < num; j++){
-				if(students[i].score[subject] > students[j].score[subject]){
+				if(students[i]->score[subject] > students[j]->score[subject]){
 					t = students[i];
 					students[i] = students[j];
 					students[j] = t;
 				}
 			}
 		}
-	} else {
-		for (i = 0; i < num-1; i++){
+	} else {//倒序排序
+		for (i = 0; i < num-1; i++){//排序流程 
 			for(j = i+1; j < num; j++){
-				if(students[i].score[subject] < students[j].score[subject]){
+				if(students[i]->score[subject] < students[j]->score[subject]){
 					t = students[i];
 					students[i] = students[j];
 					students[j] = t;
@@ -59,6 +75,10 @@ void sortByScore(int subject, Student students[], int mode, int num){
 	}
 }
 
+/*
+梁笑尘 
+排序并输出流程 
+*/ 
 void sortAndPrint(){
 	print("---------------------");
 	print("排序与输出功能");

@@ -1,15 +1,19 @@
 #include "struct.h"
 #include <string.h> 
 #include <stdio.h>
-
+//全局变量 
 extern Area area[];
 extern char currentArea[];
 extern int areaNum;
 extern Student student[];
-extern Student nowStudent[];
+extern Student* nowStudent[];
 extern int nowStudentNum;
 extern int studentNum;
 
+/*
+梁笑尘
+更换范围流程 
+*/ 
 void changeArea(){
 	int i, j;
     print("当前范围：");
@@ -28,14 +32,14 @@ void changeArea(){
     if (choice == 0){
         strcpy(currentArea, "全体");
         for (i = 0; i < studentNum; i++){
-			nowStudent[i] = student[i];
+			nowStudent[i] = &student[i];
 		}
 		nowStudentNum = studentNum;
     } else {
         strcpy(currentArea, area[choice-1].name);
         for (i = 0, j = 0; i < studentNum; i++){
     		if (student[i].aid == choice){
-    			nowStudent[j] = student[i];
+    			nowStudent[j] = &student[i];
     			j++;
 			}
 		}
