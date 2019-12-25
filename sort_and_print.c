@@ -1,6 +1,7 @@
 #include "struct.h"
 #include <string.h>
 #include <stdio.h>
+#define PAGE_SIZE 15
 
 extern char currentArea[];
 extern Student* nowStudent[];
@@ -105,7 +106,16 @@ void sortAndPrint(){
 			sortByScore(10, nowStudent, sortChoice, nowStudentNum);
 			break;
 	}
-	int i, j;
-	printStudent(nowStudent, nowStudentNum);
+	int maxPage = nowStudentNum / PAGE_SIZE;
+	if (nowStudentNum % PAGE_SIZE != 0){
+		maxPage++;
+	}
+	int currentPage = 1; 
+	do {
+		printStudent(nowStudent + (currentPage-1)*PAGE_SIZE, 
+			currentPage==maxPage ? nowStudentNum%PAGE_SIZE : PAGE_SIZE);
+		printf("第%d页 共%d页\n", currentPage, maxPage);
+		print("输入需要前往的页码 输入0返回上一级");
+	} while (currentPage = getChoice(0, maxPage));
 }
 

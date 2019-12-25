@@ -11,11 +11,12 @@ extern Sex sex[];
 获取用户输入的一个min到max之间的数 
 */ 
 int getChoice(int min, int max){
-    char input[2];
+    int input;
     do{
-        gets(input);//
-    }while(input[0] < min+'0' || input[0] > max+'0' || input[1] != '\0');//
-    return input[0] - '0';//
+        scanf("%d", &input);
+        fflush(stdin);
+    }while(input < min || input > max);
+    return input;
 }
 
 /*
@@ -111,7 +112,7 @@ void encode(unsigned char* password){
 	unsigned char encoded[100];
 	int i, j;
 	for (i = strlen(password)-1, j = 0; i >= 0; i--, j++){
-		encoded[j] = password[i]+8;
+		encoded[j] = password[i]+88;
 	}
 	strcpy(password, encoded);
 }
@@ -124,7 +125,7 @@ void decode(char* password){
 	unsigned char decoded[100];
 	int i, j;
 	for (i = strlen(password)-1, j = 0; i >= 0; i--, j++){
-		decoded[j] = password[i]-8;
+		decoded[j] = password[i]-88;
 	}
 	strcpy(password, decoded);
 }
